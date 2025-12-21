@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Asso Polyvalente
 
-## Getting Started
+Site internet pour l'association polyvalente, réalisé avec Next.js, Tailwind CSS et MongoDB.
 
-First, run the development server:
+## Fonctionnalités
 
+- **Partie Publique** :
+  - Page d'accueil
+  - Liste des évènements
+  - Détail d'un évènement
+- **Partie Admin** (`/admin`) :
+  - Authentification sécurisée
+  - Gestion des évènements (CRUD)
+  - Gestion des utilisateurs (Création d'admins)
+
+## Prérequis
+
+- Node.js
+- MongoDB
+
+## Installation
+
+1.  Cloner le projet
+2.  Installer les dépendances :
+    ```bash
+    npm install
+    ```
+3.  Configurer les variables d'environnement :
+    Créer un fichier `.env.local` à la racine avec :
+    ```env
+    MONGODB_URI=mongodb://localhost:27017/polyvalente
+    NEXTAUTH_SECRET=votre_secret_super_securise
+    NEXTAUTH_URL=http://localhost:3000
+    ```
+4.  Lancer le serveur de développement :
+    ```bash
+    npm run dev
+    ```
+
+## Premier Démarrage
+
+Pour créer le premier administrateur, vous pouvez utiliser l'API directement ou modifier temporairement le code pour autoriser la création sans authentification si aucun utilisateur n'existe (déjà implémenté dans `/api/users`).
+
+Utilisez Postman ou curl pour créer le premier admin :
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+curl -X POST http://localhost:3000/api/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Admin", "email": "admin@example.com", "password": "admin", "role": "admin"}'
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
