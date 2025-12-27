@@ -57,11 +57,10 @@ export default function ProPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Fiche Technique */}
             <div className="bg-primary-400 p-8 rounded-lg border border-gray-800 hover:border-secondary/50 transition-colors group">
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex justify-start items-start mb-6">
                 <div className="p-3 bg-[#2C353A] rounded-lg">
                   <Settings className="w-8 h-8 text-secondary" />
                 </div>
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">PDF • 2.4 MB</span>
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Fiche Technique</h3>
               <p className="text-gray-400 text-sm mb-6">
@@ -75,11 +74,10 @@ export default function ProPage() {
 
             {/* Plan de Scène */}
             <div className="bg-primary-400 p-8 rounded-lg border border-gray-800 hover:border-secondary/50 transition-colors group">
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex justify-start items-start mb-6">
                 <div className="p-3 bg-[#2C353A] rounded-lg">
                   <MapPin className="w-8 h-8 text-secondary" />
                 </div>
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">PDF • 1.1 MB</span>
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Plan de Scène</h3>
               <p className="text-gray-400 text-sm mb-6">

@@ -23,6 +23,27 @@ const EventSchema = new Schema({
     default: 'Autre',
     required: [true, 'Please provide a category'],
   },
+  subtitle: {
+    type: String,
+  },
+  coverImage: {
+    type: String,
+  },
+  artistImage: {
+    type: String,
+  },
+  artistWebsite: {
+    type: String,
+  },
+  facebookLink: {
+    type: String,
+  },
+  instagramLink: {
+    type: String,
+  },
+  artistNote: {
+    type: String,
+  },
   images: {
     type: [String],
     default: [],
