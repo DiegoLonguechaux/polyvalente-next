@@ -17,6 +17,12 @@ const EventSchema = new Schema({
     type: String,
     required: [true, 'Please provide a location'],
   },
+  category: {
+    type: String,
+    enum: ['Concert', 'Théâtre', 'Humour', 'Atelier', 'Autre'],
+    default: 'Autre',
+    required: [true, 'Please provide a category'],
+  },
   images: {
     type: [String],
     default: [],

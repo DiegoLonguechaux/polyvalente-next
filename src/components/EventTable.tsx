@@ -14,12 +14,12 @@ export default function EventTable({ events }: EventTableProps) {
     {
       header: "Titre",
       accessorKey: "title",
-      render: (event) => <div className="text-sm font-medium text-gray-900">{event.title}</div>
+      render: (event) => <div className="text-sm font-medium text-white">{event.title}</div>
     },
     {
       header: "Date",
       render: (event) => (
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-gray-400">
           {new Date(event.date).toLocaleDateString('fr-FR')}
         </div>
       )
@@ -27,7 +27,7 @@ export default function EventTable({ events }: EventTableProps) {
     {
       header: "Lieu",
       accessorKey: "location",
-      render: (event) => <div className="text-sm text-gray-500">{event.location}</div>
+      render: (event) => <div className="text-sm text-gray-400">{event.location}</div>
     },
     {
       header: "Actions",
@@ -36,7 +36,7 @@ export default function EventTable({ events }: EventTableProps) {
         <div className="flex justify-end items-center">
           <Link
             href={`/admin/events/${event._id}/edit`}
-            className="text-indigo-600 hover:text-indigo-900 p-2 mr-2"
+            className="text-gray-400 hover:text-white p-2 mr-2 transition-colors"
             title="Modifier"
           >
             <Edit className="w-5 h-5" />

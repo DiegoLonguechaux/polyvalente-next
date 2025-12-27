@@ -3,7 +3,6 @@
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import AuthNav from './AuthNav';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,10 +12,10 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-primary text-white p-4 shadow-md relative z-50">
+    <nav className="bg-primary-400 text-white p-4 shadow-md relative z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-secondary" onClick={() => setIsOpen(false)}>
-          Asso Polyvalente
+          <img src="/lpv.png" alt="La Polyvalente Logo" className="h-8 md:h-16 w-auto" />
         </Link>
 
         {/* Desktop Menu */}
@@ -33,7 +32,9 @@ export default function Navbar() {
           <Link href="/espace-pro" className="hover:text-secondary transition-colors">
             Espace pro
           </Link>
-          <AuthNav />
+          <Link href="/contact" className="hover:text-secondary transition-colors">
+            Contact
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -55,7 +56,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Drawer */}
       <div 
-        className={`fixed top-0 right-0 h-full w-[80%] max-w-sm bg-primary shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 h-full w-[80%] max-w-sm bg-primary-400 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -97,9 +98,13 @@ export default function Navbar() {
           >
             Espace pro
           </Link>
-          <div className="pt-4">
-            <AuthNav />
-          </div>
+          <Link 
+            href="/contact" 
+            className="text-xl font-medium hover:text-secondary transition-colors border-b border-gray-700 pb-2"
+            onClick={() => setIsOpen(false)}
+          >
+            Contact
+          </Link>
         </div>
       </div>
     </nav>

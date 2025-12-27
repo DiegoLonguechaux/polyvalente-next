@@ -23,7 +23,7 @@ export default function DeleteUserButton({ id }: { id: string }) {
   return (
     <button
       onClick={handleDelete}
-      className="text-red-600 hover:text-red-800 p-2"
+      className="text-red-400 hover:text-red-300 p-2 transition-colors"
       title="Supprimer"
     >
       <Trash2 className="w-5 h-5" />

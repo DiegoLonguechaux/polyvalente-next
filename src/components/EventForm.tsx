@@ -12,6 +12,7 @@ interface EventFormProps {
     description: string;
     date: string;
     location: string;
+    category?: string;
     imageUrl?: string;
     images?: string[];
   };
@@ -37,12 +38,14 @@ export default function EventForm({ initialData }: EventFormProps) {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     defaultValues: initialData ? {
       ...initialData,
-      date: new Date(initialData.date).toISOString().slice(0, 16)
+      date: new Date(initialData.date).toISOString().slice(0, 16),
+      category: initialData.category || "Autre"
     } : {
       title: "",
       description: "",
       date: "",
       location: "",
+      category: "Autre"
     },
   });
 
@@ -137,58 +140,73 @@ export default function EventForm({ initialData }: EventFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-lg shadow">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-[#1E272C] p-8 rounded-xl border border-gray-800">
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        <div className="bg-red-900/50 border border-red-800 text-red-200 px-4 py-3 rounded">
           {error}
         </div>
       )}
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Titre</label>
+        <label className="block text-sm font-medium text-gray-300">Titre</label>
         <input
           {...register("title", { required: "Le titre est requis" })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+          className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
         />
-        {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title.message as string}</p>}
+        {errors.title && <p className="text-red-400 text-xs mt-1">{errors.title.message as string}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Description</label>
+        <label className="block text-sm font-medium text-gray-300">Description</label>
         <textarea
           {...register("description", { required: "La description est requise" })}
           rows={4}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+          className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
         />
-        {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description.message as string}</p>}
+        {errors.description && <p className="text-red-400 text-xs mt-1">{errors.description.message as string}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Date et Heure</label>
+        <label className="block text-sm font-medium text-gray-300">Catégorie</label>
+        <select
+          {...register("category", { required: "La catégorie est requise" })}
+          className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
+        >
+          <option value="Concert">Concert</option>
+          <option value="Théâtre">Théâtre</option>
+          <option value="Humour">Humour</option>
+          <option value="Atelier">Atelier</option>
+          <option value="Autre">Autre</option>
+        </select>
+        {errors.category && <p className="text-red-400 text-xs mt-1">{errors.category.message as string}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-300">Date et Heure</label>
         <input
           type="datetime-local"
           {...register("date", { required: "La date est requise" })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+          className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
         />
-        {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date.message as string}</p>}
+        {errors.date && <p className="text-red-400 text-xs mt-1">{errors.date.message as string}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Lieu</label>
+        <label className="block text-sm font-medium text-gray-300">Lieu</label>
         <input
           {...register("location", { required: "Le lieu est requis" })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+          className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
         />
-        {errors.location && <p className="text-red-500 text-xs mt-1">{errors.location.message as string}</p>}
+        {errors.location && <p className="text-red-400 text-xs mt-1">{errors.location.message as string}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Photos (Max 16)</label>
+        <label className="block text-sm font-medium text-gray-300 mb-2">Photos (Max 16)</label>
         <div className="flex items-center justify-center w-full">
-          <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+          <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-[#151A1E] hover:bg-[#2C353A] transition-colors">
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
-              <Upload className="w-8 h-8 mb-4 text-gray-500" />
-              <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Cliquez pour uploader</span> ou glissez-déposez</p>
+              <Upload className="w-8 h-8 mb-4 text-gray-400" />
+              <p className="mb-2 text-sm text-gray-400"><span className="font-semibold">Cliquez pour uploader</span> ou glissez-déposez</p>
               <p className="text-xs text-gray-500">PNG, JPG, GIF (MAX. 16 photos)</p>
             </div>
             <input 
@@ -198,6 +216,7 @@ export default function EventForm({ initialData }: EventFormProps) {
               accept="image/*"
               onChange={handleFileChange}
               disabled={existingImages.length + files.length >= 16}
+
             />
           </label>
         </div>
@@ -238,18 +257,18 @@ export default function EventForm({ initialData }: EventFormProps) {
         </div>
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end pt-4 border-t border-gray-800">
         <button
           type="button"
           onClick={() => router.back()}
-          className="bg-gray-200 text-gray-700 px-4 py-2 rounded mr-2 hover:bg-gray-300"
+          className="bg-[#2C353A] text-white px-4 py-2 rounded-lg mr-3 hover:bg-gray-700 transition-colors"
         >
           Annuler
         </button>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 disabled:opacity-50"
+          className="bg-secondary text-primary font-medium px-4 py-2 rounded-lg hover:bg-opacity-90 disabled:opacity-50 transition-colors"
         >
           {isSubmitting ? "Enregistrement..." : "Enregistrer"}
         </button>

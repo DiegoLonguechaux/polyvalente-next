@@ -14,28 +14,37 @@ export default function UserTable({ users }: UserTableProps) {
     {
       header: "Nom",
       accessorKey: "name",
-      render: (user) => <div className="text-sm font-medium text-gray-900">{user.name}</div>
+      render: (user) => (
+        <div className="flex items-center">
+          <div className="h-8 w-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-bold mr-3">
+            {user.name.charAt(0)}
+          </div>
+          <div className="text-sm font-medium text-white">{user.name}</div>
+        </div>
+      )
     },
     {
       header: "Email",
       accessorKey: "email",
-      render: (user) => <div className="text-sm text-gray-500">{user.email}</div>
+      render: (user) => <div className="text-sm text-gray-400">{user.email}</div>
     },
     {
       header: "Rôle",
       accessorKey: "role",
       render: (user) => (
-        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-          user.role === 'admin' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+        <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+          user.role === 'admin' 
+            ? 'bg-secondary/20 text-secondary border border-secondary/30' 
+            : 'bg-gray-700 text-gray-300 border border-gray-600'
         }`}>
-          {user.role}
+          {user.role === 'admin' ? 'Admin' : 'Bénévole'}
         </span>
       )
     },
     {
       header: "Date de création",
       render: (user) => (
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-gray-400">
           {new Date(user.createdAt).toLocaleDateString('fr-FR')}
         </div>
       )
@@ -47,7 +56,7 @@ export default function UserTable({ users }: UserTableProps) {
         <div className="flex justify-end items-center">
           <Link
             href={`/admin/users/${user._id}/edit`}
-            className="text-indigo-600 hover:text-indigo-900 p-2 mr-2"
+            className="text-gray-400 hover:text-white p-2 mr-2 transition-colors"
             title="Modifier"
           >
             <Edit className="w-5 h-5" />

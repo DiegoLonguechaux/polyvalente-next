@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -16,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Asso Polyvalente",
-  description: "Site officiel de l'association polyvalente",
+  title: "La Polyvalente",
+  description: "Site officiel de l'association La Polyvalente",
 };
 
 export default function RootLayout({
@@ -28,14 +26,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary-50`}
       >
         <Providers>
-          <Navbar />
-          <main className="flex-grow container mx-auto p-4">
-            {children}
-          </main>
-          <Footer />
+          {children}
         </Providers>
       </body>
     </html>

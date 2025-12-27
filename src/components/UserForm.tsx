@@ -60,67 +60,76 @@ export default function UserForm({ initialData }: UserFormProps) {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow mb-8">
-      <h2 className="text-xl font-bold mb-4">
+    <div className="bg-[#1E272C] p-8 rounded-xl border border-gray-800 mb-8">
+      <h2 className="text-xl font-bold mb-6 text-white">
         {initialData ? "Modifier l'utilisateur" : "Ajouter un nouvel utilisateur"}
       </h2>
       
       {message && (
-        <div className={`p-4 rounded mb-4 ${message.includes("Erreur") ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"}`}>
+        <div className={`p-4 rounded mb-4 ${message.includes("Erreur") ? "bg-red-900/50 border border-red-800 text-red-200" : "bg-green-900/50 border border-green-800 text-green-200"}`}>
           {message}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Nom</label>
+          <label className="block text-sm font-medium text-gray-300">Nom</label>
           <input
             type="text"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <label className="block text-sm font-medium text-gray-300">Email</label>
           <input
             type="email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-300">
             {initialData ? "Nouveau mot de passe (laisser vide pour ne pas changer)" : "Mot de passe"}
           </label>
           <input
             type="password"
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
             required={!initialData}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Rôle</label>
+          <label className="block text-sm font-medium text-gray-300">Rôle</label>
           <select
             value={formData.role}
             onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border"
+            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
           >
             <option value="user">Utilisateur</option>
             <option value="admin">Administrateur</option>
           </select>
         </div>
-        <button
-          type="submit"
-          className="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90"
-        >
-          {initialData ? "Modifier" : "Créer l'utilisateur"}
-        </button>
+        <div className="flex justify-end pt-4 border-t border-gray-800">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="bg-[#2C353A] text-white px-4 py-2 rounded-lg mr-3 hover:bg-gray-700 transition-colors"
+          >
+            Annuler
+          </button>
+          <button
+            type="submit"
+            className="bg-secondary text-primary font-medium px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors"
+          >
+            {initialData ? "Modifier" : "Créer l'utilisateur"}
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -15,29 +15,29 @@ interface TableProps<T> {
 
 export default function Table<T>({ columns, data, keyExtractor }: TableProps<T>) {
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-800">
+        <thead className="bg-[#1E272C]">
           <tr>
             {columns.map((col, index) => (
               <th
                 key={index}
-                className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${col.className || ''}`}
+                className={`px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider ${col.className || ''}`}
               >
                 {col.header}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-[#1E272C] divide-y divide-gray-800">
           {data.map((item) => (
-            <tr key={keyExtractor(item)}>
+            <tr key={keyExtractor(item)} className="hover:bg-[#2C353A] transition-colors">
               {columns.map((col, index) => (
                 <td key={index} className={`px-6 py-4 whitespace-nowrap ${col.className || ''}`}>
                   {col.render ? (
                     col.render(item)
                   ) : (
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-gray-300">
                       {col.accessorKey ? String(item[col.accessorKey]) : ''}
                     </div>
                   )}
