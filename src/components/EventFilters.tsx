@@ -10,9 +10,9 @@ export default function EventFilters() {
   const [year, setYear] = useState(searchParams.get("year") || "");
   const [category, setCategory] = useState(searchParams.get("category") || "");
 
-  // Generate years (current year + next 2 years)
+  // Generate years from 2021 to current year
   const currentYear = new Date().getFullYear();
-  const years = [currentYear, currentYear + 1, currentYear + 2];
+  const years = Array.from({ length: currentYear - 2021 + 1 }, (_, i) => 2021 + i).reverse();
 
   const categories = ['Concert', 'Théâtre', 'Humour', 'Atelier', 'Autre'];
 

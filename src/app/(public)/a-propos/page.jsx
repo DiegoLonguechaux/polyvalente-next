@@ -1,9 +1,12 @@
 import { Download, Mail, MapPin, Phone } from "lucide-react";
 
 export default function AboutPage() {
-  const teamMembers = [
+  const leaders = [
     { name: "MANU", image: "/polyburo/manu.jpg" },
     { name: "DANIEL", image: "/polyburo/daniel.jpg" },
+  ];
+
+  const members = [
     { name: "CHRISTIAN", image: "/polyburo/christian.jpg" },
     { name: "VÉRONIQUE", image: "/polyburo/veronique.jpg" },
     { name: "PHILIPPE", image: "/polyburo/philippe.jpg" },
@@ -49,20 +52,35 @@ export default function AboutPage() {
 
       {/* Le Polyburo Section */}
       <section className="bg-primary-500 py-16">
-        <div className="container mx-auto px-4 text-center space-y-8">
-            <h2 className="text-4xl font-bold text-secondary text-center mb-16 uppercase">Le Polyburo</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
-            {teamMembers.map((member, index) => (
-                <div key={index} className="flex flex-col items-center space-y-4 group">
-                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gray-700 grayscale group-hover:grayscale-0 transition-all duration-300">
-                        <div className="w-full h-full bg-gray-600 flex items-center justify-center">
-                            {/* Placeholder for avatar */}
-                            <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-                        </div>
-                    </div>
-                    <span className="text-white font-medium uppercase tracking-wider text-sm">{member.name}</span>
-                </div>
-            ))}
+        <div className="container mx-auto px-4 text-center space-y-12">
+            <h2 className="text-4xl font-bold text-secondary text-center mb-8 uppercase">Le Polyburo</h2>
+            
+            {/* Leaders Row (Manu & Daniel) */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-6xl mx-auto">
+              {leaders.map((member, index) => (
+                  <div key={index} className={`flex flex-col items-center space-y-4 group ${index === 0 ? 'md:col-start-2' : ''}`}>
+                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300 border-2 border-secondary">
+                          <div className="w-full h-full flex items-center justify-center">
+                              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                          </div>
+                      </div>
+                      <span className="text-gray-300 font-medium uppercase tracking-wider text-sm">{member.name}</span>
+                  </div>
+              ))}
+            </div>
+
+            {/* Members Grid (2 rows of 4) */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-6xl mx-auto">
+              {members.map((member, index) => (
+                  <div key={index} className="flex flex-col items-center space-y-4 group">
+                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300 border-2 border-secondary">
+                          <div className="w-full h-full flex items-center justify-center">
+                              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                          </div>
+                      </div>
+                      <span className="text-gray-300 font-medium uppercase tracking-wider text-sm">{member.name}</span>
+                  </div>
+              ))}
             </div>
         </div>
       </section>

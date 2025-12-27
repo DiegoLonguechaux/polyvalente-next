@@ -2,13 +2,32 @@
 
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const getLinkClass = (path: string, isMobile = false) => {
+    const baseClass = isMobile 
+      ? "text-xl font-medium hover:text-secondary transition-colors border-b border-gray-700 pb-2"
+      : "hover:text-secondary transition-colors";
+      
+    const activeClass = "text-secondary underline decoration-2 underline-offset-4";
+    
+    let isActive = false;
+    if (path === '/') {
+      isActive = pathname === '/';
+    } else {
+      isActive = pathname.startsWith(path);
+    }
+
+    return `${baseClass} ${isActive ? activeClass : ''}`;
   };
 
   return (
@@ -20,19 +39,19 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
-          <Link href="/" className="hover:text-secondary transition-colors">
+          <Link href="/" className={getLinkClass('/')}>
             Accueil
           </Link>
-          <Link href="/events" className="hover:text-secondary transition-colors">
+          <Link href="/events" className={getLinkClass('/events')}>
             Évènements
           </Link>
-          <Link href="/a-propos" className="hover:text-secondary transition-colors">
+          <Link href="/a-propos" className={getLinkClass('/a-propos')}>
             À propos
           </Link>
-          <Link href="/espace-pro" className="hover:text-secondary transition-colors">
+          <Link href="/espace-pro" className={getLinkClass('/espace-pro')}>
             Espace pro
           </Link>
-          <Link href="/contact" className="hover:text-secondary transition-colors">
+          <Link href="/contact" className={getLinkClass('/contact')}>
             Contact
           </Link>
         </div>
@@ -72,35 +91,35 @@ export default function Navbar() {
         <div className="flex flex-col px-6 py-4 space-y-6">
           <Link 
             href="/" 
-            className="text-xl font-medium hover:text-secondary transition-colors border-b border-gray-700 pb-2"
+            className={getLinkClass('/', true)}
             onClick={() => setIsOpen(false)}
           >
             Accueil
           </Link>
           <Link 
             href="/events" 
-            className="text-xl font-medium hover:text-secondary transition-colors border-b border-gray-700 pb-2"
+            className={getLinkClass('/events', true)}
             onClick={() => setIsOpen(false)}
           >
             Évènements
           </Link>
           <Link 
             href="/a-propos" 
-            className="text-xl font-medium hover:text-secondary transition-colors border-b border-gray-700 pb-2"
+            className={getLinkClass('/a-propos', true)}
             onClick={() => setIsOpen(false)}
           >
             À propos
           </Link>
           <Link 
             href="/espace-pro" 
-            className="text-xl font-medium hover:text-secondary transition-colors border-b border-gray-700 pb-2"
+            className={getLinkClass('/espace-pro', true)}
             onClick={() => setIsOpen(false)}
           >
             Espace pro
           </Link>
           <Link 
             href="/contact" 
-            className="text-xl font-medium hover:text-secondary transition-colors border-b border-gray-700 pb-2"
+            className={getLinkClass('/contact', true)}
             onClick={() => setIsOpen(false)}
           >
             Contact
