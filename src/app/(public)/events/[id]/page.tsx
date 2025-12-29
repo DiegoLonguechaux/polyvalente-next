@@ -1,3 +1,5 @@
+import CommentSection from "@/components/CommentSection";
+import EventGallery from "@/components/EventGallery";
 import dbConnect from "@/lib/db";
 import Event from "@/models/Event";
 import { ArrowLeft, Calendar, Clock, Facebook, Globe, Instagram, MapPin } from "lucide-react";
@@ -34,7 +36,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
               alt={event.title} 
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#151A1E] via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-500 via-black/50 to-transparent" />
         </div>
         
         <div className="absolute bottom-0 left-0 right-0 container mx-auto px-4 pb-12">
@@ -64,7 +66,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
                 {/* Info Bar (Mobile/Tablet mostly, but good for all) */}
                 <div className="bg-primary-200 p-6 rounded-lg border border-gray-800 flex flex-wrap gap-8 items-center">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 bg-[#2C353A] rounded-full">
+                        <div className="p-2 bg-primary-200 rounded-full">
                             <Calendar className="w-5 h-5 text-secondary" />
                         </div>
                         <div>
@@ -75,7 +77,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
                         </div>
                     </div>
                     <div className="flex items-center gap-3">
-                        <div className="p-2 bg-[#2C353A] rounded-full">
+                        <div className="p-2 bg-primary-200 rounded-full">
                             <Clock className="w-5 h-5 text-secondary" />
                         </div>
                         <div>
@@ -86,7 +88,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
                         </div>
                     </div>
                     <div className="flex items-center gap-3">
-                        <div className="p-2 bg-[#2C353A] rounded-full">
+                        <div className="p-2 bg-primary-200 rounded-full">
                             <MapPin className="w-5 h-5 text-secondary" />
                         </div>
                         <div>
@@ -118,21 +120,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
 
             {/* Gallery */}
             {event.images && event.images.length > 0 && (
-              <div className="space-y-6 pt-8">
-                <h2 className="text-2xl font-bold text-secondary uppercase tracking-wider border-l-4 border-secondary pl-4">Galerie</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {event.images.map((img: string, index: number) => (
-                    <div key={index} className="relative aspect-square rounded-lg overflow-hidden group">
-                      <img 
-                        src={img} 
-                        alt={`Galerie ${index + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <EventGallery images={event.images} />
             )}
           </div>
 
@@ -153,17 +141,17 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
                 <div className="p-6 space-y-6">
                   <div className="flex justify-center gap-4">
                     {event.artistWebsite && (
-                      <a href={event.artistWebsite} target="_blank" rel="noopener noreferrer" className="p-3 bg-[#2C353A] rounded-full text-gray-400 hover:text-secondary hover:bg-black transition-all">
+                      <a href={event.artistWebsite} target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-200 rounded-full text-gray-400 hover:text-secondary hover:bg-black transition-all">
                         <Globe className="w-5 h-5" />
                       </a>
                     )}
                     {event.facebookLink && (
-                      <a href={event.facebookLink} target="_blank" rel="noopener noreferrer" className="p-3 bg-[#2C353A] rounded-full text-gray-400 hover:text-secondary hover:bg-black transition-all">
+                      <a href={event.facebookLink} target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-200 rounded-full text-gray-400 hover:text-secondary hover:bg-black transition-all">
                         <Facebook className="w-5 h-5" />
                       </a>
                     )}
                     {event.instagramLink && (
-                      <a href={event.instagramLink} target="_blank" rel="noopener noreferrer" className="p-3 bg-[#2C353A] rounded-full text-gray-400 hover:text-secondary hover:bg-black transition-all">
+                      <a href={event.instagramLink} target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-200 rounded-full text-gray-400 hover:text-secondary hover:bg-black transition-all">
                         <Instagram className="w-5 h-5" />
                       </a>
                     )}
@@ -173,6 +161,11 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
             )}
           </div>
         </div>
+      </div>
+
+      {/* Comments Section */}
+      <div className="container mx-auto px-4 pb-12 border-t border-gray-800 mt-12">
+        <CommentSection eventId={event._id.toString()} />
       </div>
     </div>
   );

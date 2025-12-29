@@ -1,9 +1,9 @@
-import { getServerSession } from "next-auth";
+import ContactTable from "@/components/ContactTable";
 import { authOptions } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import dbConnect from "@/lib/db";
 import Contact from "@/models/Contact";
-import ContactTable from "@/components/ContactTable";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 export const dynamic = 'force-dynamic';
 
@@ -25,7 +25,7 @@ export default async function AdminContactsPage() {
         <p className="text-gray-400">Consultez les messages envoyés via le formulaire de contact.</p>
       </div>
       
-      <div className="bg-[#1E272C] rounded-xl border border-gray-800 overflow-hidden">
+      <div className="bg-primary-400 rounded-xl border border-gray-800 overflow-hidden">
         <ContactTable contacts={serializedContacts} />
       </div>
     </div>

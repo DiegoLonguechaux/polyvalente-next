@@ -1,23 +1,22 @@
 import { authOptions } from '@/lib/auth';
 import dbConnect from '@/lib/db';
-import Event from '@/models/Event';
+import Contact from '@/models/Contact';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
-  await dbConnect();
-  const events = await Event.find({}).sort({ date: 1 });
-  return NextResponse.json(events);
-}
-
-export async function POST(request: Request) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   if (!session || (session.user.role !== 'admin' && session.user.role !== 'super_admin')) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await request.json();
   await dbConnect();
-  const event = await Event.create(body);
-  return NextResponse.json(event, { status: 201 });
+  const contact = await Contact.findByIdAndDelete(id);
+  
+  if (!contact) {
+    return NextResponse.json({ error: 'Message not found' }, { status: 404 });
+  }
+  
+  return NextResponse.json({ message: 'Message deleted' });
 }

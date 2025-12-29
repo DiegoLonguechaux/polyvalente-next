@@ -11,7 +11,7 @@ export default async function NewEventPage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold text-primary mb-8">Ajouter un évènement</h1>
+      <h1 className="text-3xl font-bold text-white mb-8">Ajouter un évènement</h1>
       <EventForm />
     </div>
   );

@@ -40,7 +40,13 @@ export default async function EventsPage({
 
   return (
     <div className="container mx-auto px-4 space-y-16 py-12">
-      <h1 className="text-4xl font-bold text-white mb-8">Nos Évènements</h1>
+      <div className="text-center space-y-4 container mx-auto px-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-secondary uppercase tracking-widest">Nos évènements</h1>
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          Vous trouverez ici tous les évènements depuis la naissance de La Polyvalente.
+        </p>
+      </div>
+      {/* <h1 className="text-4xl font-bold text-white mb-8">Nos Évènements</h1> */}
       
       <EventFilters />
 

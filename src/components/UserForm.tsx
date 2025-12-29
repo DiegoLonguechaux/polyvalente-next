@@ -1,5 +1,6 @@
 "use client";
 
+import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -21,6 +22,7 @@ export default function UserForm({ initialData }: UserFormProps) {
     role: initialData?.role || "admin",
   });
   const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,8 +62,8 @@ export default function UserForm({ initialData }: UserFormProps) {
   };
 
   return (
-    <div className="bg-[#1E272C] p-8 rounded-xl border border-gray-800 mb-8">
-      <h2 className="text-xl font-bold mb-6 text-white">
+    <div className="bg-primary-400 p-8 rounded-xl border border-gray-800 mb-8">
+      <h2 className="text-xl font-bold mb-6 text-secondary">
         {initialData ? "Modifier l'utilisateur" : "Ajouter un nouvel utilisateur"}
       </h2>
       
@@ -78,7 +80,7 @@ export default function UserForm({ initialData }: UserFormProps) {
             type="text"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
+            className="mt-1 block w-full rounded-lg border-gray-700 bg-primary-500 text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
             required
           />
         </div>
@@ -88,7 +90,7 @@ export default function UserForm({ initialData }: UserFormProps) {
             type="email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
+            className="mt-1 block w-full rounded-lg border-gray-700 bg-primary-500 text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
             required
           />
         </div>
@@ -96,36 +98,49 @@ export default function UserForm({ initialData }: UserFormProps) {
           <label className="block text-sm font-medium text-gray-300">
             {initialData ? "Nouveau mot de passe (laisser vide pour ne pas changer)" : "Mot de passe"}
           </label>
-          <input
-            type="password"
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
-            required={!initialData}
-          />
+          <div className="relative mt-1">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              className="block w-full rounded-lg border-gray-700 bg-primary-500 text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border pr-10"
+              required={!initialData}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white"
+            >
+              {showPassword ? (
+                <EyeOff className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <Eye className="h-5 w-5" aria-hidden="true" />
+              )}
+            </button>
+          </div>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300">Rôle</label>
           <select
             value={formData.role}
             onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-            className="mt-1 block w-full rounded-lg border-gray-700 bg-[#151A1E] text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
+            className="mt-1 block w-full rounded-lg border-gray-700 bg-primary-500 text-white shadow-sm focus:border-secondary focus:ring-secondary sm:text-sm p-2.5 border"
           >
-            <option value="user">Utilisateur</option>
             <option value="admin">Administrateur</option>
+            <option value="super_admin">Super Administrateur</option>
           </select>
         </div>
         <div className="flex justify-end pt-4 border-t border-gray-800">
           <button
             type="button"
             onClick={() => router.back()}
-            className="bg-[#2C353A] text-white px-4 py-2 rounded-lg mr-3 hover:bg-gray-700 transition-colors"
+            className="cursor-pointer bg-primary-200 text-white px-4 py-2 rounded-lg mr-3 hover:bg-gray-700 transition-colors"
           >
             Annuler
           </button>
           <button
             type="submit"
-            className="bg-secondary text-primary font-medium px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors"
+            className="cursor-pointer bg-secondary text-primary font-medium px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors"
           >
             {initialData ? "Modifier" : "Créer l'utilisateur"}
           </button>

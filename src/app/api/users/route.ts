@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   
   if (userCount > 0) {
     const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== 'admin') {
+    if (!session || session.user.role !== 'super_admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
   }

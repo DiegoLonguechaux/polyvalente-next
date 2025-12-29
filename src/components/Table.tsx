@@ -17,7 +17,7 @@ export default function Table<T>({ columns, data, keyExtractor }: TableProps<T>)
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-800">
-        <thead className="bg-[#1E272C]">
+        <thead className="bg-primary-400">
           <tr>
             {columns.map((col, index) => (
               <th
@@ -29,9 +29,9 @@ export default function Table<T>({ columns, data, keyExtractor }: TableProps<T>)
             ))}
           </tr>
         </thead>
-        <tbody className="bg-[#1E272C] divide-y divide-gray-800">
+        <tbody className="bg-primary-400 divide-y divide-gray-800">
           {data.map((item) => (
-            <tr key={keyExtractor(item)} className="hover:bg-[#2C353A] transition-colors">
+            <tr key={keyExtractor(item)} className="hover:bg-primary-200 transition-colors">
               {columns.map((col, index) => (
                 <td key={index} className={`px-6 py-4 whitespace-nowrap ${col.className || ''}`}>
                   {col.render ? (

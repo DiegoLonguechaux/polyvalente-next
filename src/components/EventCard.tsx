@@ -5,16 +5,18 @@ interface EventCardProps {
   event: {
     _id: string;
     title: string;
+    subtitle?: string;
     description: string;
     date: string;
     location: string;
     images: string[];
     imageUrl?: string;
+    coverImage?: string;
   };
 }
 
 export default function EventCard({ event }: EventCardProps) {
-  const image = event.images?.[0] || event.imageUrl || "/lpv.png";
+  const image = event.coverImage || "/logo-fond-fushia.jpg";
   const date = new Date(event.date);
   
   // Format date: "14 Octobre - 20h00"
@@ -32,7 +34,7 @@ export default function EventCard({ event }: EventCardProps) {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute top-4 left-4">
-          <span className="bg-[#1E272C]/90 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-lg border border-gray-700">
+          <span className="bg-primary-400/90 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-lg border border-gray-700">
             Spectacle
           </span>
         </div>
@@ -53,7 +55,7 @@ export default function EventCard({ event }: EventCardProps) {
 
         {/* Description */}
         <p className="text-gray-400 text-sm mb-6 line-clamp-2 flex-grow">
-          {event.description}
+          {event.subtitle}
         </p>
 
         {/* Footer */}

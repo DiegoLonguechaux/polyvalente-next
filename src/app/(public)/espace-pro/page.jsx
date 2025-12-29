@@ -28,7 +28,7 @@ export default function ProPage() {
             />
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
               <p className="text-white font-bold text-lg">La Grande Salle</p>
-              <p className="text-gray-300 text-sm">Capacité : 200 places debout / 120 assises</p>
+              <p className="text-gray-300 text-sm">Capacité : 60 assises</p>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ export default function ProPage() {
             {/* Fiche Technique */}
             <div className="bg-primary-400 p-8 rounded-lg border border-gray-800 hover:border-secondary/50 transition-colors group">
               <div className="flex justify-start items-start mb-6">
-                <div className="p-3 bg-[#2C353A] rounded-lg">
+                <div className="p-3 bg-primary-200 rounded-lg">
                   <Settings className="w-8 h-8 text-secondary" />
                 </div>
               </div>
@@ -66,16 +66,16 @@ export default function ProPage() {
               <p className="text-gray-400 text-sm mb-6">
                 Détails complets sur le système son, lumières, dimensions de la scène et équipements disponibles.
               </p>
-              <button className="w-full py-3 px-4 bg-secondary text-primary font-bold rounded hover:bg-[#d4c3ab] transition-colors flex items-center justify-center gap-2 uppercase text-sm">
+              <a href="/docs/DC-V8.pdf" download className="w-full py-3 px-4 bg-secondary text-primary-500 font-bold rounded transition-colors flex items-center justify-center gap-2 uppercase text-sm">
                 <Download className="w-4 h-4" />
                 Télécharger
-              </button>
+              </a>
             </div>
 
             {/* Plan de Scène */}
             <div className="bg-primary-400 p-8 rounded-lg border border-gray-800 hover:border-secondary/50 transition-colors group">
               <div className="flex justify-start items-start mb-6">
-                <div className="p-3 bg-[#2C353A] rounded-lg">
+                <div className="p-3 bg-primary-200 rounded-lg">
                   <MapPin className="w-8 h-8 text-secondary" />
                 </div>
               </div>
@@ -83,10 +83,10 @@ export default function ProPage() {
               <p className="text-gray-400 text-sm mb-6">
                 Plan détaillé de l'implantation scénique, accès décors et configuration de la salle.
               </p>
-              <button className="w-full py-3 px-4 bg-secondary text-primary font-bold rounded hover:bg-[#d4c3ab] transition-colors flex items-center justify-center gap-2 uppercase text-sm">
+              <a href="/docs/DC-V8.pdf" download className="w-full py-3 px-4 bg-secondary text-primary-500 font-bold rounded transition-colors flex items-center justify-center gap-2 uppercase text-sm">
                 <Download className="w-4 h-4" />
                 Télécharger
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function ProPage() {
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Info Panel */}
-          <div className="bg-[#151A1E] p-8 rounded-lg border border-gray-800">
+          <div className="bg-primary-500 p-8 rounded-lg border border-gray-800">
             <h3 className="text-xl font-bold text-secondary mb-6 uppercase">Informations d'accès</h3>
             
             <div className="space-y-6 text-gray-300">

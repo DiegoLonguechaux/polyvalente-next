@@ -41,7 +41,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="relative h-[300px] lg:h-[400px] w-full rounded-lg overflow-hidden border-2 border-gray-800 shadow-2xl">
+          <div className="relative h-[300px] lg:h-[400px] w-full rounded-xl overflow-hidden shadow-2xl">
             {/* Using a placeholder or existing image */}
             <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
               <img src="/team.jpg" alt="La salle" className="w-full h-full object-cover opacity-80" />
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-6xl mx-auto">
               {leaders.map((member, index) => (
                   <div key={index} className={`flex flex-col items-center space-y-4 group ${index === 0 ? 'md:col-start-2' : ''}`}>
-                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300 border-2 border-secondary">
+                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300">
                           <div className="w-full h-full flex items-center justify-center">
                               <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                           </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-6xl mx-auto">
               {members.map((member, index) => (
                   <div key={index} className="flex flex-col items-center space-y-4 group">
-                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300 border-2 border-secondary">
+                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300">
                           <div className="w-full h-full flex items-center justify-center">
                               <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                           </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
             {/* Statuts */}
             <div className="space-y-4">
                 <h3 className="text-white font-bold uppercase tracking-wider text-sm border-b border-gray-700 pb-2">Statuts</h3>
-                <a href="/docs/DC-V8.pdf" download className="w-full bg-[#2C353A] hover:bg-[#374248] text-gray-300 py-4 px-6 rounded flex items-center justify-between transition-colors group">
+                <a href="/docs/DC-V8.pdf" download className="w-full bg-primary-200 hover:bg-primary-100 text-gray-300 py-4 px-6 rounded flex items-center justify-between transition-colors group">
                 <span className="font-medium text-sm uppercase">Télécharger les statuts</span>
                 <Download className="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" />
                 </a>
@@ -121,7 +121,7 @@ export default function AboutPage() {
                   { label: 'AG 2023', file: 'ag_2023.pdf' },
                   { label: 'AG 2024', file: 'ag_2024.pdf' },
                 ].map((doc) => (
-                    <a key={doc.label} href={`/docs/${doc.file}`} download className="bg-[#2C353A] hover:bg-[#374248] text-gray-300 py-4 px-6 rounded flex items-center justify-between transition-colors group">
+                    <a key={doc.label} href={`/docs/${doc.file}`} download className="bg-primary-200 hover:bg-primary-100 text-gray-300 py-4 px-6 rounded flex items-center justify-between transition-colors group">
                     <span className="font-medium text-sm uppercase">{doc.label}</span>
                     <Download className="w-4 h-4 text-secondary group-hover:scale-110 transition-transform" />
                     </a>
@@ -175,7 +175,7 @@ export default function AboutPage() {
 
           {/* Map Placeholder */}
           <div className="lg:col-span-2 bg-gray-600 rounded-lg overflow-hidden min-h-[400px] relative">
-            <div className="absolute inset-0 flex items-center justify-center bg-[#2C353A]">
+            <div className="absolute inset-0 flex items-center justify-center bg-primary-200">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6926.589922389936!2d1.2649033767507838!3d45.844867607958804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f934c2204e6ab9%3A0x5f282410e29b51cf!2s1%20Rue%20des%20Papillons%2C%2087100%20Limoges!5e1!3m2!1sfr!2sfr!4v1766774558394!5m2!1sfr!2sfr"
                     width="100%" 

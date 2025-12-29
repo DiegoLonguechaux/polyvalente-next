@@ -1,3 +1,4 @@
+import AdminCommentManager from "@/components/AdminCommentManager";
 import EventForm from "@/components/EventForm";
 import { authOptions } from "@/lib/auth";
 import dbConnect from "@/lib/db";
@@ -21,8 +22,10 @@ export default async function EditEventPage({ params }: { params: Promise<{ id: 
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold text-primary mb-8">Modifier l&apos;évènement</h1>
+      <h1 className="text-3xl font-bold text-white mb-8">Modifier l&apos;évènement</h1>
       <EventForm initialData={JSON.parse(JSON.stringify(event))} />
+      
+      <AdminCommentManager eventId={event._id.toString()} />
     </div>
   );
 }

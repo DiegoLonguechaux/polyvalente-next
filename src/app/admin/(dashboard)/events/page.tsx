@@ -35,7 +35,7 @@ export default async function AdminEventsPage() {
         </Link>
       </div>
 
-      <div className="bg-[#1E272C] rounded-xl border border-gray-800 overflow-hidden">
+      <div className="bg-primary-400 rounded-xl border border-gray-800 overflow-hidden">
         <EventTable events={serializedEvents} />
       </div>
     </div>

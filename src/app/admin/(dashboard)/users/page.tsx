@@ -27,16 +27,18 @@ export default async function UsersPage() {
           <h1 className="text-3xl font-bold text-white mb-2">Gestion des utilisateurs</h1>
           <p className="text-gray-400">Gérez les accès, les rôles et les permissions des membres de l&apos;association.</p>
         </div>
-        <Link
-          href="/admin/users/new"
-          className="bg-secondary text-primary font-medium px-4 py-2 rounded-lg flex items-center hover:bg-opacity-90 transition-colors"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Ajouter un utilisateur
-        </Link>
+        {session.user.role === 'super_admin' && (
+          <Link
+            href="/admin/users/new"
+            className="bg-secondary text-primary font-medium px-4 py-2 rounded-lg flex items-center hover:bg-opacity-90 transition-colors"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Ajouter un utilisateur
+          </Link>
+        )}
       </div>
 
-      <div className="bg-[#1E272C] rounded-xl border border-gray-800 overflow-hidden">
+      <div className="bg-primary-400 rounded-xl border border-gray-800 overflow-hidden">
         <UserTable users={serializedUsers} />
       </div>
     </div>

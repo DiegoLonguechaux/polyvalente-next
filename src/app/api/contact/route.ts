@@ -7,14 +7,14 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { firstName, name, email, subject, message } = body;
 
-    if (!name || !email || !message) {
+    if (!firstName || !name || !email || !subject || !message) {
       return NextResponse.json({ error: 'Tous les champs sont requis' }, { status: 400 });
     }
 
     await dbConnect();
-    const contact = await Contact.create({ name, email, message });
+    const contact = await Contact.create({ firstName, name, email, subject, message });
     
     return NextResponse.json(contact, { status: 201 });
   } catch (error) {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  if (!session || session.user.role !== 'admin') {
+  if (!session || (session.user.role !== 'admin' && session.user.role !== 'super_admin')) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

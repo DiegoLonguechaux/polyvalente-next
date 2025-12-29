@@ -36,7 +36,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
       {events.length > 3 && (
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-[#1E272C] text-white p-3 rounded-full shadow-lg border border-gray-700 hover:bg-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-0"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-primary-400 text-white p-3 rounded-full shadow-lg border border-gray-700 hover:bg-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-0"
           aria-label="Précédent"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -63,7 +63,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
       {events.length > 3 && (
         <button
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-[#1E272C] text-white p-3 rounded-full shadow-lg border border-gray-700 hover:bg-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-primary-400 text-white p-3 rounded-full shadow-lg border border-gray-700 hover:bg-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
           aria-label="Suivant"
         >
           <ChevronRight className="w-6 h-6" />
