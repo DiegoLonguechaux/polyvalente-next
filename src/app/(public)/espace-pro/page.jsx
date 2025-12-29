@@ -35,12 +35,12 @@ export default function ProPage() {
           {/* Secondary Images (Placeholders for now) */}
           <div className="relative h-[240px] rounded-lg overflow-hidden border border-gray-800 group">
              <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                <img src="/salle1.jpg" alt="" className="transition-transform duration-500 group-hover:scale-105" />
+                <img src="/salle1.JPG" alt="" className="transition-transform duration-500 group-hover:scale-105" />
              </div>
           </div>
           <div className="relative h-[240px] rounded-lg overflow-hidden border border-gray-800 group">
              <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                <img src="/salle2.jpg" alt="" className="transition-transform duration-500 group-hover:scale-105" />
+                <img src="/salle2.JPG" alt="" className="transition-transform duration-500 group-hover:scale-105" />
              </div>
           </div>
         </div>
