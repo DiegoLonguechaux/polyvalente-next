@@ -1,4 +1,4 @@
-import { writeFile } from "fs/promises";
+import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
@@ -14,13 +14,14 @@ export async function POST(request: Request) {
   const savedFilePaths: string[] = [];
 
   for (const file of files) {
-    const buffer = Buffer.from(await file.arrayBuffer());
     const filename = `${uuidv4()}${path.extname(file.name)}`;
-    const uploadDir = path.join(process.cwd(), "public/uploads");
-    const filePath = path.join(uploadDir, filename);
+    
+    // Upload to Vercel Blob
+    const blob = await put(filename, file, {
+      access: 'public',
+    });
 
-    await writeFile(filePath, buffer);
-    savedFilePaths.push(`/uploads/${filename}`);
+    savedFilePaths.push(blob.url);
   }
 
   return NextResponse.json({ urls: savedFilePaths });
