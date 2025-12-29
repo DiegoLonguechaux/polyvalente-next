@@ -85,6 +85,13 @@ export default function EventForm({ initialData }: EventFormProps) {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newFiles = Array.from(e.target.files);
+
+      // Check for file size > 4.5MB (Vercel Serverless Function Limit)
+      const oversizedFiles = newFiles.filter(file => file.size > 4.5 * 1024 * 1024);
+      if (oversizedFiles.length > 0) {
+        setError(`Certaines images sont trop volumineuses (> 4.5Mo) : ${oversizedFiles.map(f => f.name).join(', ')}. Veuillez les compresser.`);
+        return;
+      }
       
       // Limit to 16 images total (existing + new)
       const totalImages = existingImages.length + files.length + newFiles.length;
@@ -104,6 +111,10 @@ export default function EventForm({ initialData }: EventFormProps) {
   const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+      if (file.size > 4.5 * 1024 * 1024) {
+        setError(`L'image de couverture est trop volumineuse (> 4.5Mo). Veuillez la compresser.`);
+        return;
+      }
       setCoverFile(file);
       setCoverPreview(URL.createObjectURL(file));
     }
@@ -113,6 +124,10 @@ export default function EventForm({ initialData }: EventFormProps) {
   const handleArtistChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+      if (file.size > 4.5 * 1024 * 1024) {
+        setError(`L'image de l'artiste est trop volumineuse (> 4.5Mo). Veuillez la compresser.`);
+        return;
+      }
       setArtistFile(file);
       setArtistPreview(URL.createObjectURL(file));
     }
@@ -137,12 +152,15 @@ export default function EventForm({ initialData }: EventFormProps) {
       // Upload Gallery Images
       let uploadedUrls: string[] = [];
       if (files.length > 0) {
-        const formData = new FormData();
-        files.forEach((file) => formData.append("files", file));
-        const uploadRes = await fetch("/api/upload", { method: "POST", body: formData });
-        if (!uploadRes.ok) throw new Error("Erreur lors de l'upload des images de la galerie");
-        const uploadData = await uploadRes.json();
-        uploadedUrls = uploadData.urls;
+        // Upload files one by one to avoid Vercel payload limit (4.5MB)
+        for (const file of files) {
+          const formData = new FormData();
+          formData.append("files", file);
+          const uploadRes = await fetch("/api/upload", { method: "POST", body: formData });
+          if (!uploadRes.ok) throw new Error(`Erreur lors de l'upload de l'image ${file.name}`);
+          const uploadData = await uploadRes.json();
+          uploadedUrls.push(uploadData.urls[0]);
+        }
       }
 
       // Upload Cover Image
