@@ -140,10 +140,9 @@ export default function EventForm({ initialData }: EventFormProps) {
       if (files.length > 0) {
         // Upload all files in parallel
         const uploadPromises = files.map(file => 
-          upload(file.name, file, {
+          upload(`${Date.now()}-${file.name}`, file, {
             access: 'public',
             handleUploadUrl: '/api/upload',
-            addRandomSuffix: true,
           })
         );
         
@@ -154,10 +153,9 @@ export default function EventForm({ initialData }: EventFormProps) {
       // Upload Cover Image
       let coverImageUrl = existingCoverImage;
       if (coverFile) {
-        const newBlob = await upload(coverFile.name, coverFile, {
+        const newBlob = await upload(`${Date.now()}-${coverFile.name}`, coverFile, {
           access: 'public',
           handleUploadUrl: '/api/upload',
-          addRandomSuffix: true,
         });
         coverImageUrl = newBlob.url;
       }
@@ -165,9 +163,8 @@ export default function EventForm({ initialData }: EventFormProps) {
       // Upload Artist Image
       let artistImageUrl = existingArtistImage;
       if (artistFile) {
-        const newBlob = await upload(artistFile.name, artistFile, {
+        const newBlob = await upload(`${Date.now()}-${artistFile.name}`, artistFile, {
           access: 'public',
-          addRandomSuffix: true,
           handleUploadUrl: '/api/upload',
         });
         artistImageUrl = newBlob.url;
