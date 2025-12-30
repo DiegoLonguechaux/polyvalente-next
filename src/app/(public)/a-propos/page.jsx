@@ -120,7 +120,7 @@ export default function AboutPage() {
             {/* Statuts */}
             <div className="space-y-4">
                 <h3 className="text-white font-bold uppercase tracking-wider text-sm border-b border-gray-700 pb-2">Statuts</h3>
-                <a href="/docs/DC-V8.pdf" download className="w-full bg-primary-200 hover:bg-primary-100 text-gray-300 py-4 px-6 rounded flex items-center justify-between transition-colors group">
+                <a href="/docs/statuts.pdf" download className="w-full bg-primary-200 hover:bg-primary-100 text-gray-300 py-4 px-6 rounded flex items-center justify-between transition-colors group">
                 <span className="font-medium text-sm uppercase">Télécharger les statuts</span>
                 <Download className="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" />
                 </a>

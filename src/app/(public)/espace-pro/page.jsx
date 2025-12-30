@@ -78,7 +78,7 @@ export default function ProPage() {
               <p className="text-gray-400 text-sm mb-6">
                 Détails complets sur le système son, lumières, dimensions de la scène et équipements disponibles.
               </p>
-              <a href="/docs/DC-V8.pdf" download className="w-full py-3 px-4 bg-secondary text-primary-500 font-bold rounded transition-colors flex items-center justify-center gap-2 uppercase text-sm">
+              <a href="/docs/statuts.pdf" download className="w-full py-3 px-4 bg-secondary text-primary-500 font-bold rounded transition-colors flex items-center justify-center gap-2 uppercase text-sm">
                 <Download className="w-4 h-4" />
                 Télécharger
               </a>
@@ -95,7 +95,7 @@ export default function ProPage() {
               <p className="text-gray-400 text-sm mb-6">
                 Plan détaillé de l'implantation scénique, accès décors et configuration de la salle.
               </p>
-              <a href="/docs/DC-V8.pdf" download className="w-full py-3 px-4 bg-secondary text-primary-500 font-bold rounded transition-colors flex items-center justify-center gap-2 uppercase text-sm">
+              <a href="/docs/statuts.pdf" download className="w-full py-3 px-4 bg-secondary text-primary-500 font-bold rounded transition-colors flex items-center justify-center gap-2 uppercase text-sm">
                 <Download className="w-4 h-4" />
                 Télécharger
               </a>
