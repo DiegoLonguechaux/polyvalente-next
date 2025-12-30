@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface EventGalleryProps {
@@ -60,10 +61,12 @@ export default function EventGallery({ images }: EventGalleryProps) {
             className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
             onClick={() => openLightbox(index)}
           >
-            <img
+            <Image
               src={img}
               alt={`Galerie ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 50vw, 25vw"
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
           </div>

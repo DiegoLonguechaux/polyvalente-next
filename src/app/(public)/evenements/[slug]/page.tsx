@@ -4,6 +4,7 @@ import dbConnect from "@/lib/db";
 import Event from "@/models/Event";
 import { ArrowLeft, Calendar, Clock, Facebook, Globe, Instagram, MapPin } from "lucide-react";
 import { isValidObjectId } from "mongoose";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -33,10 +34,13 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
       {/* Hero Section */}
       <div className="relative h-[60vh] w-full">
         <div className="absolute inset-0">
-            <img 
+            <Image 
               src={heroImage} 
               alt={event.title} 
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-500 via-black/50 to-transparent" />
         </div>
