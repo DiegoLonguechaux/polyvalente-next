@@ -1,28 +1,40 @@
-import { put } from "@vercel/blob";
-import { NextResponse } from "next/server";
-import path from "path";
-import { v4 as uuidv4 } from "uuid";
+import { authOptions } from '@/lib/auth';
+import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
+import { getServerSession } from 'next-auth';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
-  const formData = await request.formData();
-  const files = formData.getAll("files") as File[];
+export async function POST(request: Request): Promise<NextResponse> {
+  const body = (await request.json()) as HandleUploadBody;
 
-  if (!files || files.length === 0) {
-    return NextResponse.json({ error: "No files received." }, { status: 400 });
-  }
+  try {
+    const jsonResponse = await handleUpload({
+      body,
+      request,
+      onBeforeGenerateToken: async (pathname, clientPayload) => {
+        // Sécurité : Seuls les admins peuvent uploader
+        const session = await getServerSession(authOptions);
+        if (!session || (session.user.role !== 'admin' && session.user.role !== 'superadmin')) {
+          throw new Error('Unauthorized');
+        }
 
-  const savedFilePaths: string[] = [];
-
-  for (const file of files) {
-    const filename = `${uuidv4()}${path.extname(file.name)}`;
-    
-    // Upload to Vercel Blob
-    const blob = await put(filename, file, {
-      access: 'public',
+        return {
+          allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
+          tokenPayload: JSON.stringify({
+            // optional payload
+          }),
+        };
+      },
+      onUploadCompleted: async ({ blob, tokenPayload }) => {
+        // On pourrait logger l'upload ici si besoin
+        console.log('Upload completed:', blob.url);
+      },
     });
 
-    savedFilePaths.push(blob.url);
+    return NextResponse.json(jsonResponse);
+  } catch (error) {
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 400 },
+    );
   }
-
-  return NextResponse.json({ urls: savedFilePaths });
 }
