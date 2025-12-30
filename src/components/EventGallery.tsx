@@ -53,7 +53,7 @@ export default function EventGallery({ images }: EventGalleryProps) {
       <h2 className="text-2xl font-bold text-secondary uppercase tracking-wider border-l-4 border-secondary pl-4">
         Galerie
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {images.map((img, index) => (
           <div
             key={index}
