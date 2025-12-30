@@ -143,6 +143,7 @@ export default function EventForm({ initialData }: EventFormProps) {
           upload(file.name, file, {
             access: 'public',
             handleUploadUrl: '/api/upload',
+            addRandomSuffix: true,
           })
         );
         
@@ -156,6 +157,7 @@ export default function EventForm({ initialData }: EventFormProps) {
         const newBlob = await upload(coverFile.name, coverFile, {
           access: 'public',
           handleUploadUrl: '/api/upload',
+          addRandomSuffix: true,
         });
         coverImageUrl = newBlob.url;
       }
@@ -165,6 +167,7 @@ export default function EventForm({ initialData }: EventFormProps) {
       if (artistFile) {
         const newBlob = await upload(artistFile.name, artistFile, {
           access: 'public',
+          addRandomSuffix: true,
           handleUploadUrl: '/api/upload',
         });
         artistImageUrl = newBlob.url;
