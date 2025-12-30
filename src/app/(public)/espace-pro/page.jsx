@@ -31,7 +31,7 @@ export default function ProPage() {
               priority
             />
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent z-20">
-              <p className="text-white font-bold text-lg">La Grande Salle</p>
+              <p className="text-white font-bold text-lg">La Salle</p>
               <p className="text-gray-300 text-sm">Capacité : 60 assises</p>
             </div>
           </div>
