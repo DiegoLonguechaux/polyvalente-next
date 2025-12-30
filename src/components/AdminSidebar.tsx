@@ -13,7 +13,7 @@ export default function AdminSidebar() {
 
   const menuItems = [
     { name: "Tableau de bord", href: "/admin", icon: LayoutDashboard },
-    { name: "Spectacles", href: "/admin/events", icon: Calendar },
+    { name: "Événements", href: "/admin/evenements", icon: Calendar },
     { name: "Utilisateurs", href: "/admin/users", icon: Users },
     { name: "Messages", href: "/admin/contacts", icon: MessageSquare },
   ];

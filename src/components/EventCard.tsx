@@ -5,6 +5,7 @@ interface EventCardProps {
   event: {
     _id: string;
     title: string;
+    slug?: string;
     subtitle?: string;
     description: string;
     date: string;
@@ -61,7 +62,7 @@ export default function EventCard({ event }: EventCardProps) {
         {/* Footer */}
         <div className="flex items-center justify-end mt-auto pt-4 border-t border-gray-700">
           <Link 
-            href={`/events/${event._id}`}
+            href={`/evenements/${event.slug || event._id}`}
             className="bg-secondary text-primary-400 px-6 py-3 rounded-lg font-medium text-sm transition-colors"
           >
             Détail

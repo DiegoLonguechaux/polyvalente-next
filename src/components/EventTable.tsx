@@ -76,7 +76,7 @@ export default function EventTable({ events }: EventTableProps) {
       render: (event) => (
         <div className="flex justify-end items-center">
           <Link
-            href={`/admin/events/${event._id}/edit`}
+            href={`/admin/evenements/${event.slug || event._id}/edit`}
             className="text-gray-400 hover:text-white p-2 mr-2 transition-colors"
             title="Modifier"
           >

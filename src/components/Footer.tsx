@@ -25,11 +25,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-secondary shrink-0" />
-                <span>06 84 92 04 20</span>
+                <a href="tel:0684920420">06 84 92 04 20</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-secondary shrink-0" />
-                <span>desenfant01@yahoo.fr</span>
+                <a href="mailto:desenfant01@yahoo.fr">desenfant01@yahoo.fr</a>
               </li>
             </ul>
           </div>
@@ -42,7 +42,7 @@ export default function Footer() {
                 <Link href="/" className="hover:text-secondary transition-colors">Accueil</Link>
               </li>
               <li>
-                <Link href="/events" className="hover:text-secondary transition-colors">Évènements</Link>
+                <Link href="/evenements" className="hover:text-secondary transition-colors">Évènements</Link>
               </li>
               <li>
                 <Link href="/a-propos" className="hover:text-secondary transition-colors">À propos</Link>

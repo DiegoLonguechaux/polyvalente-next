@@ -21,7 +21,7 @@ export default function EventFilters() {
     if (year) params.set("year", year);
     if (category) params.set("category", category);
     
-    router.push(`/events?${params.toString()}`);
+    router.push(`/evenements?${params.toString()}`);
   }, [year, category, router]);
 
   return (

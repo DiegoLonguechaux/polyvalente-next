@@ -18,6 +18,27 @@ export async function POST(request: Request) {
 
   const body = await request.json();
   await dbConnect();
-  const event = await Event.create(body);
+
+  // Generate slug from title
+  let slug = body.title
+    .toString()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+
+  // Ensure slug is unique
+  let uniqueSlug = slug;
+  let counter = 1;
+  while (await Event.findOne({ slug: uniqueSlug })) {
+    uniqueSlug = `${slug}-${counter}`;
+    counter++;
+  }
+
+  const event = await Event.create({ ...body, slug: uniqueSlug });
   return NextResponse.json(event, { status: 201 });
 }

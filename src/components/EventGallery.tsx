@@ -78,7 +78,7 @@ export default function EventGallery({ images }: EventGalleryProps) {
         >
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 z-10 text-white/70 hover:text-white transition-colors p-2"
+            className=" cursor-pointer absolute top-4 right-4 z-10 text-white/70 hover:text-white transition-colors p-2"
             aria-label="Fermer"
           >
             <X className="w-8 h-8" />
@@ -86,7 +86,7 @@ export default function EventGallery({ images }: EventGalleryProps) {
 
           <button
             onClick={showPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/20 hover:bg-black/40 rounded-full"
+            className="cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/20 hover:bg-black/40 rounded-full"
             aria-label="Précédent"
           >
             <ChevronLeft className="w-8 h-8" />
@@ -103,7 +103,7 @@ export default function EventGallery({ images }: EventGalleryProps) {
 
           <button
             onClick={showNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/20 hover:bg-black/40 rounded-full"
+            className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white/70 hover:text-white transition-colors p-2 bg-black/20 hover:bg-black/40 rounded-full"
             aria-label="Suivant"
           >
             <ChevronRight className="w-8 h-8" />

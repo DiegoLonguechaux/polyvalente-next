@@ -42,7 +42,7 @@ export default function Navbar() {
           <Link href="/" className={getLinkClass('/')}>
             Accueil
           </Link>
-          <Link href="/events" className={getLinkClass('/events')}>
+          <Link href="/evenements" className={getLinkClass('/evenements')}>
             Évènements
           </Link>
           <Link href="/a-propos" className={getLinkClass('/a-propos')}>
@@ -97,8 +97,8 @@ export default function Navbar() {
             Accueil
           </Link>
           <Link 
-            href="/events" 
-            className={getLinkClass('/events', true)}
+            href="/evenements" 
+            className={getLinkClass('/evenements', true)}
             onClick={() => setIsOpen(false)}
           >
             Évènements

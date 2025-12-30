@@ -5,6 +5,10 @@ const EventSchema = new Schema({
     type: String,
     required: [true, 'Please provide a title'],
   },
+  slug: {
+    type: String,
+    unique: true,
+  },
   description: {
     type: String,
     required: [true, 'Please provide a description'],

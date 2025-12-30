@@ -3,18 +3,22 @@ import EventForm from "@/components/EventForm";
 import { authOptions } from "@/lib/auth";
 import dbConnect from "@/lib/db";
 import Event from "@/models/Event";
+import { isValidObjectId } from "mongoose";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 
-export default async function EditEventPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function EditEventPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/admin/login");
   }
 
   await dbConnect();
-  const event = await Event.findById(id);
+  
+  let event;
+  const query = isValidObjectId(slug) ? { _id: slug } : { slug };
+  event = await Event.findOne(query);
 
   if (!event) {
     notFound();

@@ -49,7 +49,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white mb-1">Téléphone</h3>
-                    <p className="text-gray-400">06 84 92 04 20</p>
+                    <a href="tel:0684920420" className="text-gray-400">06 84 92 04 20</a>
                   </div>
                 </div>
 
@@ -59,7 +59,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-white mb-1">Email</h3>
-                    <p className="text-gray-400">desenfant01@yahoo.fr</p>
+                    <a href="mailto:desenfant01@yahoo.fr" className="text-gray-400">desenfant01@yahoo.fr</a>
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                         width="100%" 
                         height="100%"
                         style={{ border: 0 }} 
-                        allowfullscreen 
+                        allowFullScreen 
                         loading="lazy"
                     ></iframe>
                 </div>

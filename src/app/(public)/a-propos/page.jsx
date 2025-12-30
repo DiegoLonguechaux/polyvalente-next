@@ -1,4 +1,5 @@
 import { Download, Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
   const leaders = [
@@ -42,9 +43,15 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="relative h-[300px] lg:h-[400px] w-full rounded-xl overflow-hidden shadow-2xl">
-            {/* Using a placeholder or existing image */}
-            <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
-              <img src="/team.jpg" alt="La salle" className="w-full h-full object-cover opacity-80" />
+            <div className="absolute inset-0 bg-gray-800">
+              <Image 
+                src="/team.jpg" 
+                alt="La salle" 
+                fill
+                className="object-cover opacity-80"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
             </div>
           </div>
         </div>
@@ -59,12 +66,16 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-6xl mx-auto">
               {leaders.map((member, index) => (
                   <div key={index} className={`flex flex-col items-center space-y-4 group ${index === 0 ? 'md:col-start-2' : ''}`}>
-                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300">
-                          <div className="w-full h-full flex items-center justify-center">
-                              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-                          </div>
+                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-300 relative">
+                          <Image 
+                            src={member.image} 
+                            alt={member.name} 
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            sizes="(max-width: 768px) 128px, 144px"
+                          />
                       </div>
-                      <span className="text-gray-300 font-medium uppercase tracking-wider text-sm">{member.name}</span>
+                      <span className="text-gray-300 font-medium uppercase tracking-wider text-sm group-hover:text-secondary transition-colors">{member.name}</span>
                   </div>
               ))}
             </div>
@@ -73,12 +84,16 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 max-w-6xl mx-auto">
               {members.map((member, index) => (
                   <div key={index} className="flex flex-col items-center space-y-4 group">
-                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale transition-all duration-300">
-                          <div className="w-full h-full flex items-center justify-center">
-                              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-                          </div>
+                      <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-300 relative">
+                          <Image 
+                            src={member.image} 
+                            alt={member.name} 
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            sizes="(max-width: 768px) 128px, 144px"
+                          />
                       </div>
-                      <span className="text-gray-300 font-medium uppercase tracking-wider text-sm">{member.name}</span>
+                      <span className="text-gray-300 font-medium uppercase tracking-wider text-sm group-hover:text-secondary transition-colors">{member.name}</span>
                   </div>
               ))}
             </div>
@@ -181,7 +196,7 @@ export default function AboutPage() {
                     width="100%" 
                     height="100%"
                     style={{ border: 0 }} 
-                    allowfullscreen 
+                    allowFullScreen 
                     loading="lazy"
                 ></iframe>
             </div>

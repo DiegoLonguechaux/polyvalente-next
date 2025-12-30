@@ -31,7 +31,7 @@ export default async function Home() {
         </p>
         <div className="flex flex-col md:flex-row gap-4">
           <Link 
-            href="/events" 
+            href="/evenements" 
             className="bg-secondary text-primary-400 px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all text-lg"
           >
             Voir les évènements
@@ -77,7 +77,7 @@ export default async function Home() {
           <p className="text-secondary font-medium mb-2 uppercase tracking-wider border-l-2 border-secondary pl-2">À l'affiche</p>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
             <h2 className="text-4xl font-bold text-white">Prochains évènements</h2>
-            <Link href="/events" className="text-secondary hover:underline font-medium flex items-center">
+            <Link href="/evenements" className="text-secondary hover:underline font-medium flex items-center">
               Voir tous les évènements →
             </Link>
           </div>

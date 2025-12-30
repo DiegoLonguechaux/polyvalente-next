@@ -27,7 +27,7 @@ export default async function AdminEventsPage() {
           <p className="text-gray-400">Planifiez et gérez les évènements de l&apos;association.</p>
         </div>
         <Link
-          href="/admin/events/new"
+          href="/admin/evenements/new"
           className="bg-secondary text-primary font-medium px-4 py-2 rounded-lg flex items-center hover:bg-opacity-90 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />

@@ -198,7 +198,7 @@ export default function EventForm({ initialData }: EventFormProps) {
         throw new Error("Une erreur est survenue lors de la sauvegarde");
       }
 
-      router.push("/admin/events");
+      router.push("/admin/evenements");
       router.refresh();
     } catch (e: unknown) {
       if (e instanceof Error) {

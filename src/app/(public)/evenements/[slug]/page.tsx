@@ -3,16 +3,18 @@ import EventGallery from "@/components/EventGallery";
 import dbConnect from "@/lib/db";
 import Event from "@/models/Event";
 import { ArrowLeft, Calendar, Clock, Facebook, Globe, Instagram, MapPin } from "lucide-react";
+import { isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export default async function EventPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   await dbConnect();
   
   let event;
   try {
-    event = await Event.findById(id);
+    const query = isValidObjectId(slug) ? { _id: slug } : { slug };
+    event = await Event.findOne(query);
   } catch {
     notFound();
   }
@@ -40,7 +42,7 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
         </div>
         
         <div className="absolute bottom-0 left-0 right-0 container mx-auto px-4 pb-12">
-            <Link href="/events" className="inline-flex items-center text-gray-300 hover:text-secondary mb-6 transition-colors uppercase text-sm tracking-widest">
+            <Link href="/evenements" className="inline-flex items-center text-gray-300 hover:text-secondary mb-6 transition-colors uppercase text-sm tracking-widest">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Retour aux évènements
             </Link>
