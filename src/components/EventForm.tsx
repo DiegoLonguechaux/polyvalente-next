@@ -138,13 +138,16 @@ export default function EventForm({ initialData }: EventFormProps) {
       // Upload Gallery Images
       let uploadedUrls: string[] = [];
       if (files.length > 0) {
-        for (const file of files) {
-          const newBlob = await upload(file.name, file, {
+        // Upload all files in parallel
+        const uploadPromises = files.map(file => 
+          upload(file.name, file, {
             access: 'public',
             handleUploadUrl: '/api/upload',
-          });
-          uploadedUrls.push(newBlob.url);
-        }
+          })
+        );
+        
+        const blobs = await Promise.all(uploadPromises);
+        uploadedUrls = blobs.map(blob => blob.url);
       }
 
       // Upload Cover Image
