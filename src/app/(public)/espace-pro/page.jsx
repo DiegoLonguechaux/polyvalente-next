@@ -1,4 +1,5 @@
 import { Download, MapPin, Music, Settings } from "lucide-react";
+import Image from "next/image";
 
 export default function ProPage() {
   return (
@@ -20,28 +21,39 @@ export default function ProPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Main Image */}
           <div className="lg:col-span-2 row-span-2 relative h-[400px] md:h-[500px] rounded-lg overflow-hidden border border-gray-800 group">
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
-            <img 
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10" />
+            <Image 
               src="/salle.JPG" 
               alt="Salle de spectacle principale" 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
             />
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent z-20">
               <p className="text-white font-bold text-lg">La Grande Salle</p>
               <p className="text-gray-300 text-sm">Capacité : 60 assises</p>
             </div>
           </div>
 
-          {/* Secondary Images (Placeholders for now) */}
+          {/* Secondary Images */}
           <div className="relative h-[240px] rounded-lg overflow-hidden border border-gray-800 group">
-             <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                <img src="/salle1.JPG" alt="" className="transition-transform duration-500 group-hover:scale-105" />
-             </div>
+            <Image 
+              src="/salle1.JPG" 
+              alt="Vue de la salle 1" 
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 1024px) 50vw, 33vw"
+            />
           </div>
           <div className="relative h-[240px] rounded-lg overflow-hidden border border-gray-800 group">
-             <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                <img src="/salle2.JPG" alt="" className="transition-transform duration-500 group-hover:scale-105" />
-             </div>
+            <Image 
+              src="/salle2.JPG" 
+              alt="Vue de la salle 2" 
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 1024px) 50vw, 33vw"
+            />
           </div>
         </div>
       </section>
