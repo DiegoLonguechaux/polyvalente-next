@@ -1,5 +1,6 @@
 "use client";
 
+import { useNotification } from "@/context/NotificationContext";
 import { Calendar, LayoutDashboard, LogOut, MessageSquare, Users } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import { usePathname } from "next/navigation";
 export default function AdminSidebar() {
   const { data: session } = useSession();
   const pathname = usePathname();
+  const { unreadCount: unprocessedCount } = useNotification();
 
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + "/");
 
@@ -49,6 +51,11 @@ export default function AdminSidebar() {
             >
               <Icon className="w-5 h-5" />
               <span className="font-medium">{item.name}</span>
+              {item.name === "Messages" && unprocessedCount > 0 && (
+                <span className="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                  {unprocessedCount}
+                </span>
+              )}
             </Link>
           );
         })}

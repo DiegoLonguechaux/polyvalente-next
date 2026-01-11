@@ -1,3 +1,4 @@
+import ContactHeader from "@/components/ContactHeader";
 import ContactTable from "@/components/ContactTable";
 import { authOptions } from "@/lib/auth";
 import dbConnect from "@/lib/db";
@@ -8,6 +9,7 @@ import { redirect } from "next/navigation";
 export const dynamic = 'force-dynamic';
 
 export default async function AdminContactsPage() {
+  
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -15,13 +17,13 @@ export default async function AdminContactsPage() {
   }
 
   await dbConnect();
-  const contacts = await Contact.find({}).sort({ createdAt: -1 });
+  const contacts = await Contact.find({}).sort({ read: 1, createdAt: -1 });
   const serializedContacts = JSON.parse(JSON.stringify(contacts));
 
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">Messages reçus</h1>
+        <ContactHeader />
         <p className="text-gray-400">Consultez les messages envoyés via le formulaire de contact.</p>
       </div>
       

@@ -1,6 +1,7 @@
 "use client";
 
 import Table, { Column } from "@/components/Table";
+import { useNotification } from "@/context/NotificationContext";
 import { Eye, Trash2, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -15,6 +16,7 @@ export default function ContactTable({ contacts: initialContacts }: ContactTable
   const [selectedContact, setSelectedContact] = useState<any | null>(null);
   const [contactToDelete, setContactToDelete] = useState<string | null>(null);
   const router = useRouter();
+  const { updateUnreadCount } = useNotification();
 
   const handleDelete = async () => {
     if (!contactToDelete) return;
@@ -32,6 +34,25 @@ export default function ContactTable({ contacts: initialContacts }: ContactTable
       console.error("Error deleting contact:", error);
     } finally {
       setContactToDelete(null);
+    }
+  };
+
+  const toggleRead = async (contact: any) => {
+    try {
+      const res = await fetch(`/api/contact/${contact._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ read: !contact.read }),
+      });
+
+      if (res.ok) {
+        const updatedContact = await res.json();
+        setContacts(contacts.map(c => c._id === contact._id ? updatedContact : c));
+        updateUnreadCount(contact.read ? 1 : -1);
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Error updating contact:", error);
     }
   };
 
@@ -72,6 +93,21 @@ export default function ContactTable({ contacts: initialContacts }: ContactTable
         <div className="text-sm text-gray-400 max-w-[200px] truncate" title={contact.subject}>
           {contact.subject}
         </div>
+      )
+    },
+    {
+      header: "Traité",
+      accessorKey: "read",
+      render: (contact) => (
+        <label className="relative inline-flex items-center cursor-pointer" title={contact.read ? "Marquer comme non traité" : "Marquer comme traité"}>
+          <input 
+            type="checkbox" 
+            checked={contact.read} 
+            onChange={() => toggleRead(contact)} 
+            className="sr-only peer" 
+          />
+          <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+        </label>
       )
     },
     {

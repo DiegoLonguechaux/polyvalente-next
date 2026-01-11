@@ -29,7 +29,7 @@ export default function EventFilters() {
       <select
         value={year}
         onChange={(e) => setYear(e.target.value)}
-        className="border border-secondary text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"
+        className="bg-primary-400 border border-secondary text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"
       >
         <option value="">Toutes les années</option>
         {years.map((y) => (
@@ -40,7 +40,7 @@ export default function EventFilters() {
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
-        className="border border-secondary text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"
+        className="bg-primary-400 border border-secondary text-secondary text-sm rounded-lg focus:ring-secondary focus:border-secondary block p-2.5"
       >
         <option value="">Toutes les catégories</option>
         {categories.map((c) => (

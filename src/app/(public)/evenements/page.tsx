@@ -26,7 +26,7 @@ async function getEvents(searchParams: { [key: string]: string | string[] | unde
     };
   }
 
-  const events = await Event.find(query).sort({ date: 1 });
+  const events = await Event.find(query).sort({ date: -1 });
   return events;
 }
 

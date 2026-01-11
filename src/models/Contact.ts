@@ -25,6 +25,10 @@ const ContactSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  processed: {
+    type: Boolean,
+    default: false,
+  },
 }, { timestamps: true });
 
 const Contact = models.Contact || model('Contact', ContactSchema);

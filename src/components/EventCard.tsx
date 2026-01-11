@@ -8,6 +8,7 @@ interface EventCardProps {
     slug?: string;
     subtitle?: string;
     description: string;
+    category: string;
     date: string;
     location: string;
     images: string[];
@@ -36,7 +37,7 @@ export default function EventCard({ event }: EventCardProps) {
         />
         <div className="absolute top-4 left-4">
           <span className="bg-primary-400/90 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-lg border border-gray-700">
-            Spectacle
+            {event.category}
           </span>
         </div>
       </div>
@@ -50,12 +51,12 @@ export default function EventCard({ event }: EventCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-white mb-2 line-clamp-1 transition-colors">
+        <h3 className="text-xl font-bold text-white mb-2 transition-colors break-words whitespace-normal">
           {event.title}
         </h3>
 
         {/* Description */}
-        <p className="text-gray-400 text-sm mb-6 line-clamp-2 flex-grow">
+        <p className="text-gray-400 text-sm mb-6 flex-grow break-words whitespace-normal">
           {event.subtitle}
         </p>
 

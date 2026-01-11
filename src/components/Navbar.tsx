@@ -31,7 +31,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-primary-400 text-white p-4 shadow-md relative z-50">
+    <nav className="bg-primary-400 text-white p-4 shadow-md fixed top-0 left-0 right-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-secondary" onClick={() => setIsOpen(false)}>
           <img src="/lpv.png" alt="La Polyvalente Logo" className="h-8 md:h-16 w-auto" />

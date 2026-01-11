@@ -52,7 +52,7 @@ export default function EventsCarousel({ events }: EventsCarouselProps) {
         {events.map((event) => (
           <div 
             key={event._id} 
-            className="min-w-[100%] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start flex-shrink-0"
+            className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-start flex-shrink-0"
           >
             <EventCard event={event} />
           </div>
